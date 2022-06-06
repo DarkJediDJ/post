@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:post"
         mc:Ignorable="d"
-        Title="Calculator" Background="DarkGray" Height="450" Width="482">
-    <Grid>
-        <Button Content="Посчитать" HorizontalAlignment="Center" Margin="0,329,0,0" VerticalAlignment="Top" Height="41" Width="166"/>
-        <CheckBox Content="Международная" HorizontalAlignment="Center" Margin="0,297,0,0" VerticalAlignment="Top" Height="27" Width="166" Checked="CheckBox_Checked"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,232,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="33"/>
-        <TextBox Background="DarkGray" HorizontalAlignment="Left" Margin="158,199,0,0" Text="Вес посылки" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" IsReadOnlyCaretVisible="True"/>
+        Title="Calculator" Background="DarkGray" Height="342" Width="370">
+    <Grid Margin="10,10,0,64">
+        <Button Content="Посчитать" HorizontalAlignment="Center" Margin="0,203,0,0" VerticalAlignment="Top" Height="41" Width="166"/>
+        <CheckBox Content="Международная" HorizontalAlignment="Center" Margin="0,171,0,0" VerticalAlignment="Top" Height="27" Width="166" Checked="CheckBox_Checked"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,106,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="33"/>
+        <TextBox Background="DarkGray" HorizontalAlignment="Left" Margin="139,73,0,0" Text="Вес посылки" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" IsReadOnlyCaretVisible="True" Height="18"/>
     </Grid>
 </Window>

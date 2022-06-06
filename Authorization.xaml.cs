@@ -30,7 +30,7 @@ namespace post
         {
             if (textBoxEmail.Text.Length == 0)
             {
-                errormessage.Text = "Enter an login.";
+                MessageBox.Show("Enter an login.");
                 textBoxEmail.Focus();
             }
             else
@@ -39,13 +39,13 @@ namespace post
                 string password = passwordBox1.Password;
                 if (login == "admin" && password == "admin")
                 {
-                    Goods goods = new Goods();
+                    Packages goods = new Packages();
                     goods.Show();
                     Close();
                 }
                 else
                 {
-                    errormessage.Text = "Sorry! Please enter existing login/password.";
+                    MessageBox.Show("Sorry! Please enter existing login/password.");
                 }
             }
         }

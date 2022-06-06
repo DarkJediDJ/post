@@ -7,21 +7,22 @@ using System;
 using Npgsql;
 using NpgsqlTypes;
 using System.Windows.Data;
+using System.Collections.Generic;
 
 namespace post
 {
     /// <summary>  
     /// Interaction logic for MainWindow.xaml  
     /// </summary>   
-    public partial class Goods : Window
+    public partial class Packages : Window
     {
         string connectionString;
         NpgsqlDataAdapter adapter;
         System.Data.DataTable goodsTable;
-        public Goods()
+        public Packages()
         {
             InitializeComponent();
-            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            connectionString = "User ID=admin;Password=admin;Host=172.31.108.50;Port=5432;Database=kursach;";
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -30,29 +31,30 @@ namespace post
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            string sql = "SELECT * FROM Goods";
+            string sql = "SELECT * FROM package";
             goodsTable = new System.Data.DataTable();
             NpgsqlConnection connection = null;
             try
             {
                 connection = new NpgsqlConnection(connectionString);
-                NpgsqlCommand command = new NpgsqlCommand(sql, connection);
-
-                adapter = new NpgsqlDataAdapter(command);
-
-                // установка команды на добавление для вызова хранимой процедуры
-                adapter.InsertCommand = new NpgsqlCommand("sp_InsertGoods", connection);
-                adapter.InsertCommand.CommandType = CommandType.StoredProcedure;
-                adapter.InsertCommand.Parameters.Add(new NpgsqlParameter("@name", NpgsqlDbType.Varchar, 50, "Name"));
-                adapter.InsertCommand.Parameters.Add(new NpgsqlParameter("@capacity", NpgsqlDbType.Double, 0, "Capacity"));
-
-                NpgsqlParameter parameter = adapter.InsertCommand.Parameters.Add("@Id", NpgsqlDbType.Integer, 0, "Id");
-                parameter.Direction = ParameterDirection.Output;
 
                 connection.Open();
-                adapter.Fill(goodsTable);
-                goodsGrid.ItemsSource = goodsTable.DefaultView;
-            }
+                NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM deposits", connection);
+                NpgsqlDataReader reader = command.ExecuteReader();
+                    List<Package> DBPackage = new List<Package>();
+                    while (reader.Read())
+                    {
+                        int id = Convert.ToInt32(reader["ID"]);
+                        string _ClientName = Convert.ToString(reader["ClientName"]);
+                        int _DepositAmount = Convert.ToInt32(reader["DepositAmount"]);
+                        DateTime _DepositTerm = Convert.ToDateTime(reader["DepositTerm"]);
+                        int _InterestRate = Convert.ToInt32(reader["InterestRate"]);
+                        string _Currency = Convert.ToString(reader["Currency"]);
+                    DBPackage.Add(new Package() {  });
+                    }
+                    CardGrid.ItemsSource = DBPackage;
+                }
+    
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -63,14 +65,10 @@ namespace post
                     connection.Close();
             }
         }
-        private void UpdateDB()
-        {
-            NpgsqlCommandBuilder comandbuilder = new NpgsqlCommandBuilder(adapter);
-            adapter.Update(goodsTable);
-        }
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-            UpdateDB();
+            Window_Loaded();
+        }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
