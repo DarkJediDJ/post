@@ -14,28 +14,26 @@
             <Border.Effect>
                 <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="0"/>
             </Border.Effect>
-            <DataGrid x:Name="goodsGrid"  SelectionChanged="DataGrid_SelectionChanged" Background="SkyBlue" FontSize="18" FontStyle="Oblique" FontWeight="Bold" HorizontalGridLinesBrush="#FF080707" VerticalGridLinesBrush="#FF030303" Margin="0,7,0,7" HorizontalAlignment="Center" Width="1600" >
+            <DataGrid AutoGenerateColumns="False" x:Name="goodsGrid"  SelectionChanged="DataGrid_SelectionChanged" Background="SkyBlue" FontSize="18" FontStyle="Oblique" FontWeight="Bold" HorizontalGridLinesBrush="#FF080707" VerticalGridLinesBrush="#FF030303" Margin="0,7,0,7" HorizontalAlignment="Center" Width="1600" >
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Посылка" Width="150" />
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Статус" Width="130" />
-                    <DataGridTextColumn Binding="{Binding Capacity}" Header="Получатель/Отправитель" Width="380"/>
-                    <DataGridTextColumn Binding="{Binding Amount}" Header="Адрес" Width="230"/>
-                    <DataGridTextColumn Binding="{Binding Price}" Header="Дата отправки" Width="210"/>
-                    <DataGridTextColumn Binding="{Binding Manufacturer}" Header="Дата получения" Width="210"/>
-                    <DataGridTextColumn Binding="{Binding Manufacturer}" Header="Номер получателя" Width="210"/>
-                    <DataGridTextColumn Binding="{Binding Type}" Header="Цена" Width="80"/>
+                    <DataGridTextColumn Binding="{Binding Item}" Header="Посылка" Width="150" />
+                    <DataGridTextColumn Binding="{Binding Status}" Header="Статус" Width="130" />
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Отправитель" Width="200"/>
+                    <DataGridTextColumn Binding="{Binding Reciever}" Header="Получатель" Width="200"/>
+                    <DataGridTextColumn Binding="{Binding Adress}" Header="Адрес" Width="200"/>
+                    <DataGridTextColumn Binding="{Binding Departure}" Header="Дата отправки" Width="160"/>
+                    <DataGridTextColumn Binding="{Binding Recieving}" Header="Дата получения" Width="160"/>
+                    <DataGridTextColumn Binding="{Binding Phone}" Header="Номер получателя" Width="210"/>
+                    <DataGridTextColumn Binding="{Binding Price}" Header="Цена" Width="80"/>
+                    <DataGridTextColumn Binding="{Binding Type}" Header="Тип" Width="100"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
-        <Button BorderThickness="4" Content="Информация" HorizontalAlignment="Left" Margin="256,632,0,0" VerticalAlignment="Top" Width="268" Height="46" FontSize="20" Background="Blue" Click="updateButton_Click" Grid.Column="1"/>
-        <Button BorderThickness="4" Content="Калькулятор" HorizontalAlignment="Left" Margin="257,712,0,0" VerticalAlignment="Top" Width="267" Height="46" FontSize="20" Background="Blue" Click="deleteButton_Click" Grid.Column="1"/>
-        <Button BorderThickness="4" Content="Клиенты" HorizontalAlignment="Left" Margin="1089,712,0,0" VerticalAlignment="Top" Width="266" Height="46" FontSize="20" Background="Blue" Click="Button_Click_1" Grid.Column="1"/>
-        <Button BorderThickness="4" Content="Отданные" HorizontalAlignment="Left" Margin="665,630,0,0" VerticalAlignment="Top" Width="268" Height="48" FontSize="20" Background="Blue" Click="Button_Click_6" Grid.Column="1"/>
-        <Button BorderThickness="4" Content="Принятые" HorizontalAlignment="Left" Margin="665,784,0,0" VerticalAlignment="Top" Width="268" Height="46" FontSize="20" Background="Blue" Click="Button_Click_2" Grid.Column="1"/>
-        <Button BorderThickness="4" Content="Просроченные" HorizontalAlignment="Left" Margin="665,712,0,0" VerticalAlignment="Top" Width="268" Height="46" FontSize="20" Background="Blue" Click="Button_Click_3" Grid.Column="1"/>
-        <Button BorderThickness="4" Content="Выйти" HorizontalAlignment="Left" Margin="1089,786,0,0" VerticalAlignment="Top" Width="268" Height="46" FontSize="24" Background="Crimson" Grid.Column="1"/>
-        <Button BorderThickness="4" Content="Отчет" HorizontalAlignment="Left" Margin="1089,632,0,0" VerticalAlignment="Top" Width="266" Height="46" FontSize="20" Background="Blue" Grid.Column="1"/>
-        <Button BorderThickness="4" Content="Добавить" HorizontalAlignment="Left" Margin="256,786,0,0" VerticalAlignment="Top" Width="267" Height="46" FontSize="20" Background="Blue" Grid.Column="1"/>
+        <Button BorderThickness="4" Content="Калькулятор" HorizontalAlignment="Left" Margin="257,712,0,0" VerticalAlignment="Top" Width="267" Height="46" FontSize="20" Background="Blue" Click="calculator_Click" Grid.Column="1"/>
+        <Button BorderThickness="4" Content="Клиенты" HorizontalAlignment="Left" Margin="664,632,0,0" VerticalAlignment="Top" Width="266" Height="46" FontSize="20" Background="Blue" Click="clients_Click" Grid.Column="1"/>
+        <Button BorderThickness="4" Content="Выйти" HorizontalAlignment="Left" Margin="1089,786,0,0" VerticalAlignment="Top" Width="268" Height="46" FontSize="24" Background="Crimson" Click="deleteButton_Click" Grid.Column="1"/>
+        <Button BorderThickness="4" Content="Отчет" HorizontalAlignment="Left" Margin="257,632,0,0" VerticalAlignment="Top" Width="266" Height="46" FontSize="20" Background="Blue" Click="report_Click" Grid.Column="1"/>
+        <Button BorderThickness="4" Content="Добавить" HorizontalAlignment="Left" Margin="664,712,0,0" VerticalAlignment="Top" Width="267" Height="46" FontSize="20" Background="Blue" Click="updateButton_Click" Grid.Column="1"/>
     </Grid>
 </Window>

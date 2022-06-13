@@ -22,7 +22,7 @@ namespace post
         public Packages()
         {
             InitializeComponent();
-            connectionString = "User ID=admin;Password=admin;Host=172.31.108.50;Port=5432;Database=kursach;";
+            connectionString = "User ID=admin;Password=admin;Host=172.28.235.40;Port=5432;Database=kursach;";
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,22 +39,26 @@ namespace post
                 connection = new NpgsqlConnection(connectionString);
 
                 connection.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM deposits", connection);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT packages.departure_time,packages.recieving_time,packages.type,packages.price, packages.item,packages.status, users.name, users.phone, users.adress,users.reciever FROM users JOIN packages ON users.package_id = packages.id", connection);
                 NpgsqlDataReader reader = command.ExecuteReader();
-                    List<Package> DBPackage = new List<Package>();
-                    while (reader.Read())
-                    {
-                        int id = Convert.ToInt32(reader["ID"]);
-                        string _ClientName = Convert.ToString(reader["ClientName"]);
-                        int _DepositAmount = Convert.ToInt32(reader["DepositAmount"]);
-                        DateTime _DepositTerm = Convert.ToDateTime(reader["DepositTerm"]);
-                        int _InterestRate = Convert.ToInt32(reader["InterestRate"]);
-                        string _Currency = Convert.ToString(reader["Currency"]);
-                    DBPackage.Add(new Package() {  });
-                    }
-                    CardGrid.ItemsSource = DBPackage;
+                List<Package> DBPackage = new List<Package>();
+                while (reader.Read())
+                {
+                    string _Departure = Convert.ToString(reader["departure_time"]);
+                    string _Recieving = Convert.ToString(reader["recieving_time"]);
+                    string _Type = Convert.ToString(reader["type"]);
+                    string _Item = Convert.ToString(reader["item"]);
+                    string _Name = Convert.ToString(reader["name"]);
+                    string _Phone = Convert.ToString(reader["phone"]);
+                    string _Adress = Convert.ToString(reader["adress"]);
+                    string _Reciever = Convert.ToString(reader["reciever"]);
+                    string _Price = Convert.ToString(reader["price"]);
+                    string _Status = Convert.ToString(reader["status"]);
+                    DBPackage.Add(new Package() { Name = _Name, Departure = _Departure, Recieving = _Recieving, Type = _Type, Item = _Item, Phone = _Phone, Adress = _Adress, Reciever = _Reciever, Price = _Price, Status = _Status });
                 }
-    
+                goodsGrid.ItemsSource = DBPackage;
+            }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -65,103 +69,30 @@ namespace post
                     connection.Close();
             }
         }
+
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-            Window_Loaded();
-        }
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
+            
         }
 
-        private void deleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (goodsGrid.SelectedItems != null)
-            {
-                for (int i = 0; i < goodsGrid.SelectedItems.Count; i++)
-                {
-                    DataRowView datarowView = goodsGrid.SelectedItems[i] as DataRowView;
-                    if (datarowView != null)
-                    {
-                        DataRow dataRow = (DataRow)datarowView.Row;
-                        dataRow.Delete();
-                    }
-                }
-            }
-            UpdateDB();
-        }
+    private void calculator_Click(object sender, RoutedEventArgs e)
+    {
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            NpgsqlConnection connection = null;
-            string sql = "SELECT * FROM Goods ORDER BY Amount";
-            connection = new NpgsqlConnection(connectionString);
-            NpgsqlCommand command = new NpgsqlCommand(sql, connection);
-            adapter = new NpgsqlDataAdapter(command);
-            connection.Open();
-            goodsTable.Clear();
-            adapter.Fill(goodsTable);
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            NpgsqlConnection connection = null;
-            string sql = "SELECT * FROM Goods WHERE Type LIKE '%Водка%'";
-            connection = new NpgsqlConnection(connectionString);
-            NpgsqlCommand command = new NpgsqlCommand(sql, connection);
-            adapter = new NpgsqlDataAdapter(command);
-            connection.Open();
-            goodsTable.Clear();
-            adapter.Fill(goodsTable);
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            NpgsqlConnection connection = null;
-            string sql = "SELECT * FROM Goods WHERE Type LIKE '%Коньяк%'";
-            connection = new NpgsqlConnection(connectionString);
-            NpgsqlCommand command = new NpgsqlCommand(sql, connection);
-            adapter = new NpgsqlDataAdapter(command);
-            connection.Open();
-            goodsTable.Clear();
-            adapter.Fill(goodsTable);
-        }
-
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-            NpgsqlConnection connection = null;
-            string sql = "SELECT * FROM Goods WHERE Type LIKE '%Бальзам%'";
-            connection = new NpgsqlConnection(connectionString);
-            NpgsqlCommand command = new NpgsqlCommand(sql, connection);
-            adapter = new NpgsqlDataAdapter(command);
-            connection.Open();
-            goodsTable.Clear();
-            adapter.Fill(goodsTable);
-        }
-
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-            NpgsqlConnection connection = null;
-            string sql = "SELECT * FROM Goods WHERE Type LIKE '%Вино%'";
-            connection = new NpgsqlConnection(connectionString);
-            NpgsqlCommand command = new NpgsqlCommand(sql, connection);
-            adapter = new NpgsqlDataAdapter(command);
-            connection.Open();
-            goodsTable.Clear();
-            adapter.Fill(goodsTable);
-        }
-
-        private void Button_Click_6(object sender, RoutedEventArgs e)
-        {
-            NpgsqlConnection connection = null;
-            string sql = "SELECT * FROM Goods ORDER BY Price";
-            connection = new NpgsqlConnection(connectionString);
-            NpgsqlCommand command = new NpgsqlCommand(sql, connection);
-            adapter = new NpgsqlDataAdapter(command);
-            connection.Open();
-            goodsTable.Clear();
-            adapter.Fill(goodsTable);
-        }
     }
+
+    private void clients_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void deleteButton_Click(object sender, RoutedEventArgs e)
+    {
+        NpgsqlConnection connection = null;
+
+    }
+
+    private void report_Click(object sender, RoutedEventArgs e)
+    {
+    }
+}
 }
