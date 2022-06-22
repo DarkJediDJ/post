@@ -33,5 +33,27 @@ namespace post
         {
 
         }
+
+        private void calculator_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (Weight.Text.Length == 0)
+            {
+                MessageBox.Show("Введите вес");
+            }
+            else
+            {
+                int weight = Convert.ToInt32(Weight.Text);
+                if (Check.IsChecked == true)
+                {
+                    MessageBox.Show(Convert.ToString(weight * 2 * 5));
+                }
+                else
+                {
+                    MessageBox.Show(Convert.ToString(weight * 5));
+                }
+            }
+
+        }
     }
 }

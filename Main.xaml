@@ -32,8 +32,9 @@
         </Border>
         <Button BorderThickness="4" Content="Калькулятор" HorizontalAlignment="Left" Margin="257,712,0,0" VerticalAlignment="Top" Width="267" Height="46" FontSize="20" Background="Blue" Click="calculator_Click" Grid.Column="1"/>
         <Button BorderThickness="4" Content="Клиенты" HorizontalAlignment="Left" Margin="664,632,0,0" VerticalAlignment="Top" Width="266" Height="46" FontSize="20" Background="Blue" Click="clients_Click" Grid.Column="1"/>
-        <Button BorderThickness="4" Content="Выйти" HorizontalAlignment="Left" Margin="1089,786,0,0" VerticalAlignment="Top" Width="268" Height="46" FontSize="24" Background="Crimson" Click="deleteButton_Click" Grid.Column="1"/>
+        <Button BorderThickness="4" Content="Выйти" HorizontalAlignment="Left" Margin="1089,786,0,0" VerticalAlignment="Top" Width="268" Height="46" FontSize="24" Background="Crimson" Click="exit_Click" Grid.Column="1"/>
         <Button BorderThickness="4" Content="Отчет" HorizontalAlignment="Left" Margin="257,632,0,0" VerticalAlignment="Top" Width="266" Height="46" FontSize="20" Background="Blue" Click="report_Click" Grid.Column="1"/>
         <Button BorderThickness="4" Content="Добавить" HorizontalAlignment="Left" Margin="664,712,0,0" VerticalAlignment="Top" Width="267" Height="46" FontSize="20" Background="Blue" Click="updateButton_Click" Grid.Column="1"/>
+        <Button BorderThickness="4" Content="Обновить" HorizontalAlignment="Left" Margin="1091,632,0,0" VerticalAlignment="Top" Width="266" Height="46" FontSize="20" Background="Blue" Click="refresh_Click" Grid.Column="1"/>
     </Grid>
 </Window>

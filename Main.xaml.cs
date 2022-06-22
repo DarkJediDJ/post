@@ -8,6 +8,8 @@ using Npgsql;
 using NpgsqlTypes;
 using System.Windows.Data;
 using System.Collections.Generic;
+using System.IO;
+using System.Windows.Input;
 
 namespace post
 {
@@ -22,7 +24,7 @@ namespace post
         public Packages()
         {
             InitializeComponent();
-            connectionString = "User ID=admin;Password=admin;Host=172.28.235.40;Port=5432;Database=kursach;";
+            connectionString = "User ID=admin;Password=admin;Host=172.28.197.127;Port=5432;Database=kursach;";
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -31,7 +33,6 @@ namespace post
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            string sql = "SELECT * FROM package";
             goodsTable = new System.Data.DataTable();
             NpgsqlConnection connection = null;
             try
@@ -72,27 +73,60 @@ namespace post
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            Add add = new Add();
+            add.Show();
+
         }
 
     private void calculator_Click(object sender, RoutedEventArgs e)
     {
-
-    }
+            Calculator calc = new Calculator();
+            calc.Show();
+        }
 
     private void clients_Click(object sender, RoutedEventArgs e)
     {
-
+            Clients cli = new Clients();
+            cli.Show();
     }
 
-    private void deleteButton_Click(object sender, RoutedEventArgs e)
-    {
-        NpgsqlConnection connection = null;
-
+        private void report_Click(object sender, RoutedEventArgs e)
+        {
+            goodsGrid.SelectAllCells();
+            goodsGrid.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+            ApplicationCommands.Copy.Execute(null, goodsGrid);
+            goodsGrid.UnselectAllCells();
+            var result = (string)Clipboard.GetData(DataFormats.Text);
+            dynamic wordApp = null;
+            try
+            {
+                var sw = new StreamWriter("export.doc");
+                sw.WriteLine(result);
+                sw.Close();
+                //var proc = Process.Start("export.doc");
+                Type wordType = Type.GetTypeFromProgID("Word.Application");
+                wordApp = Activator.CreateInstance(wordType);
+                wordApp.Documents.Add(System.AppDomain.CurrentDomain.BaseDirectory + "export.doc");
+                wordApp.ActiveDocument.Range.ConvertToTable(1, goodsGrid.Items.Count, goodsGrid.Columns.Count);
+                wordApp.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                if (wordApp != null)
+                {
+                    wordApp.Quit();
+                }
+                // ignored
+            }
+        }
+            private void refresh_Click(object sender, RoutedEventArgs e)
+        {
+            Window_Loaded(sender, e);
+        }
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 
-    private void report_Click(object sender, RoutedEventArgs e)
-    {
-    }
-}
 }
