@@ -24,7 +24,7 @@ namespace post
         public Packages()
         {
             InitializeComponent();
-            connectionString = "User ID=admin;Password=admin;Host=172.28.197.127;Port=5432;Database=kursach;";
+            connectionString = "User ID=admin;Password=admin;Host=172.25.230.95;Port=5432;Database=kursach;";
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

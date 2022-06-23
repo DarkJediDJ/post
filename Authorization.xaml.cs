@@ -30,7 +30,7 @@ namespace post
         {
             if (textBoxEmail.Text.Length == 0)
             {
-                MessageBox.Show("Enter an login.");
+                MessageBox.Show("Введите логин");
                 textBoxEmail.Focus();
             }
             else
@@ -45,7 +45,7 @@ namespace post
                 }
                 else
                 {
-                    MessageBox.Show("Sorry! Please enter existing login/password.");
+                    MessageBox.Show("Введите корректные данные");
                 }
             }
         }
