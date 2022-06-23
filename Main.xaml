@@ -36,5 +36,6 @@
         <Button BorderThickness="4" Content="Отчет" HorizontalAlignment="Left" Margin="257,632,0,0" VerticalAlignment="Top" Width="266" Height="46" FontSize="20" Background="Blue" Click="report_Click" Grid.Column="1"/>
         <Button BorderThickness="4" Content="Добавить" HorizontalAlignment="Left" Margin="664,712,0,0" VerticalAlignment="Top" Width="267" Height="46" FontSize="20" Background="Blue" Click="updateButton_Click" Grid.Column="1"/>
         <Button BorderThickness="4" Content="Обновить" HorizontalAlignment="Left" Margin="1091,632,0,0" VerticalAlignment="Top" Width="266" Height="46" FontSize="20" Background="Blue" Click="refresh_Click" Grid.Column="1"/>
+        <Button BorderThickness="4" Content="Справка" HorizontalAlignment="Left" Margin="1091,712,0,0" VerticalAlignment="Top" Width="266" Height="46" FontSize="20" Background="Blue" Click="info_Click" Grid.Column="1"/>
     </Grid>
 </Window>

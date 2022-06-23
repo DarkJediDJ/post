@@ -10,13 +10,15 @@ using System.Windows.Data;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Input;
+using System.Diagnostics;
+using Microsoft.Office.Interop.Word;
 
 namespace post
 {
     /// <summary>  
     /// Interaction logic for MainWindow.xaml  
     /// </summary>   
-    public partial class Packages : Window
+    public partial class Packages 
     {
         string connectionString;
         NpgsqlDataAdapter adapter;
@@ -126,6 +128,16 @@ namespace post
         private void exit_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void info_Click(object sender, RoutedEventArgs e)
+        {
+            Process p = new Process();
+            ProcessStartInfo pi = new ProcessStartInfo();
+            pi.UseShellExecute = true;
+            pi.FileName = @"info.doc";
+            p.StartInfo = pi;
+            p.Start();
         }
     }
 

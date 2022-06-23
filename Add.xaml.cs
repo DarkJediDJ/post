@@ -25,7 +25,7 @@ namespace post
     public partial class Add : Window
     {
         private NpgsqlConnection NpgsqlConnection = null;
-        string connectionString = "User ID=admin;Password=admin;Host=172.28.197.127;Port=5432;Database=kursach;";
+        string connectionString = "User ID=admin;Password=admin;Host=172.25.230.95;Port=5432;Database=kursach;";
         public Add()
         {
             InitializeComponent();
